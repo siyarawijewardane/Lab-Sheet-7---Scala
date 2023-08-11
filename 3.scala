@@ -1,24 +1,34 @@
-object Q3{
+import scala.io.StdIn
+
+object FindPrime{
+
+    def filterPrime( numbers : List[Int]) : List[Int] = {
+
+        numbers.filter( number => {
+            
+            if (number <= 1) false
+            else if (number <= 3) true
+            else if (number % 2 == 0 || number % 3 == 0) false
+            else {
+                var i = 5
+                var isPrime = true
+                while (i * i <= number && isPrime) {
+                if (number % i == 0 || number % (i + 2) == 0)
+                    isPrime = false
+                i += 6
+                }
+                isPrime
+            }
+
+        }
+        )
+    }
+
     def main(args: Array[String]): Unit = {
-        var primeList: List[Int] = filterPrime(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)).filter(_ != 1)
-        println(primeList)
-    }
+        
+            println("Enter the list of numbers : ")
+            val input = StdIn.readLine().split(",").map(_.toInt).toList
 
-    val filterPrime = (numbers: List[Int]) => {
-        numbers.map(num => {
-            var flag = 0;
-            for(i <- 2 to num/2){
-                if(num == 1 || num % i == 0){
-                    flag = 1;
-                }   
-            }
-            if(flag == 0){
-                num;
-            }
-            else{
-                0;
-            }
-        }).filter(_ != 0)
+            println(filterPrime(input))
     }
-
 }

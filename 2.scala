@@ -1,10 +1,16 @@
-object Q2{
-    def main (args: Array[String]): Unit = {
-        var squreNumbers: List[Int] = calculateSquare(List(1, 2, 3, 4, 5));
-        println(squreNumbers);
+import scala.io.StdIn
+
+object GetSquare{
+
+    def calculateSquare(numbers : List[Int]) : List[Int] = {
+        numbers.map ( number => number * number)
     }
 
-    val calculateSquare = (numbers: List[Int]) =>{
-        numbers.map(num => num * num);
+    def main(args: Array[String]): Unit = {
+        
+        println("Enter the list of numbers :")
+        val input = StdIn.readLine().split(",").map(_.toInt).toList
+
+        println(calculateSquare(input))
     }
 }
